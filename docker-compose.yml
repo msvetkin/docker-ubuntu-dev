@@ -8,5 +8,9 @@ services:
       dockerfile: Dockerfile
     container_name: ubuntu-dev
     user: trilla
+    environment:
+      - SSH_AUTH_SOCK=${SSH_AUTH_SOCK}
     volumes:
       - /home/trilla/code:/home/trilla/code
+      - ${PWD}/cache:/home/trilla/.cache
+      - ${SSH_AUTH_SOCK}:${SSH_AUTH_SOCK}

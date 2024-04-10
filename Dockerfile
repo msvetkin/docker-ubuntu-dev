@@ -12,9 +12,14 @@ RUN apt-get update && \
     apt-get install -y \
        build-essential \
         cmake \
-        ninja-build
-
-RUN apt-get install -y \
+        ninja-build \
+        curl \
+        zip \
+        unzip \
+        tar \
+        git \
+        libssl-dev \
+        python3.10-venv \
         libgl1-mesa-dev \
         libpulse-dev \
         libxcb-glx0 \
@@ -34,7 +39,8 @@ RUN apt-get install -y \
         libxkbcommon-dev \
         libxcb-xkb-dev \
         freeglut3-dev \
-        python3-pip
+        python3-pip \
+        openssh-client
 
 RUN pip3 install aqtinstall
 
@@ -55,7 +61,7 @@ RUN rm -rf /var/lib/apt/lists/*
 # Add user 'trilla'
 RUN useradd -m trilla
 
-RUN aqt install-qt linux desktop 6.5.2 gcc_64 -O /home/trilla/.cache/rm-build/qt
+USER trilla
 
 # Set the working directory
 WORKDIR /home/trilla/code
