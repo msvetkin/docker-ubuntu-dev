@@ -8,9 +8,14 @@ services:
       dockerfile: Dockerfile
     container_name: ubuntu-dev
     user: trilla
+    privileged: true
+    security_opt:
+      - seccomp:unconfined
     environment:
       - SSH_AUTH_SOCK=${SSH_AUTH_SOCK}
+      - DISPLAY=${DISPLAY}
     volumes:
       - /home/trilla/code:/home/trilla/code
-      - ${PWD}/cache:/home/trilla/.cache
+      - /tmp/.X11-unix:/tmp/.X11-unix
+      - ${PWD}/cache:/home/trilla/my-cache
       - ${SSH_AUTH_SOCK}:${SSH_AUTH_SOCK}

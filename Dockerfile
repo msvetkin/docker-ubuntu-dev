@@ -1,5 +1,5 @@
 # Use the official Ubuntu base image
-FROM ubuntu:latest
+FROM ubuntu:22.04
 
 # Set environment variables
 ENV DEBIAN_FRONTEND noninteractive
@@ -18,8 +18,8 @@ RUN apt-get update && \
         unzip \
         tar \
         git \
+        gdb \
         libssl-dev \
-        python3.10-venv \
         libgl1-mesa-dev \
         libpulse-dev \
         libxcb-glx0 \
@@ -41,8 +41,6 @@ RUN apt-get update && \
         freeglut3-dev \
         python3-pip \
         openssh-client
-
-RUN pip3 install aqtinstall
 
 RUN apt-get install -y \
       ca-certificates \
